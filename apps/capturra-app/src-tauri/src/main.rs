@@ -241,7 +241,53 @@ fn open_studio(app: &AppHandle) {
     }
 }
 
+/// Ensure standard macOS tool paths (Homebrew on Apple Silicon/Intel, MacPorts, etc.)
+/// are present in PATH so GUI-launched apps (Finder / Applications) find ffmpeg and ffprobe.
+fn ensure_path_env() {
+    #[cfg(target_os = "macos")]
+    {
+        let current = std::env::var("PATH").unwrap_or_default();
+        let home = std::env::var("HOME").unwrap_or_default();
+        let candidates = [
+            "/opt/homebrew/bin",
+            "/opt/homebrew/sbin",
+            "/usr/local/bin",
+            "/usr/local/sbin",
+            "/opt/local/bin",
+            "/opt/local/sbin",
+            "/usr/bin",
+            "/bin",
+            "/usr/sbin",
+            "/sbin",
+        ];
+        let mut paths: Vec<String> = candidates
+            .iter()
+            .filter(|p| std::path::Path::new(p).exists())
+            .map(|&p| p.to_string())
+            .collect();
+        if !home.is_empty() {
+            for sub in [".cargo/bin", ".local/bin", "bin", ".nix-profile/bin"] {
+                let p = format!("{home}/{sub}");
+                if std::path::Path::new(&p).exists() && !paths.contains(&p) {
+                    paths.push(p);
+                }
+            }
+        }
+        for existing in current.split(':') {
+            if !existing.is_empty() && !paths.iter().any(|p| p == existing) {
+                paths.push(existing.to_string());
+            }
+        }
+        let new_path = paths.join(":");
+        // Safety: called at start of main() before any worker threads are spawned.
+        unsafe {
+            std::env::set_var("PATH", new_path);
+        }
+    }
+}
+
 fn main() {
+    ensure_path_env();
     let recorder = Arc::new(Recorder::default());
     tauri::Builder::default()
         .manage(recorder)

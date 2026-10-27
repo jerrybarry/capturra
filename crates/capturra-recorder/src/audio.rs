@@ -190,7 +190,7 @@ pub fn mux(video: &Path, inputs: &[AudioInput], video_origin_ms: u64) -> Result<
         bail!("there is no audio to add");
     }
     let tmp = video.with_extension("with-audio.mp4");
-    let mut cmd = Command::new("ffmpeg");
+    let mut cmd = Command::new(crate::encoder::ffmpeg_bin());
     cmd.args(["-y", "-loglevel", "error", "-i"]).arg(video);
     for input in inputs {
         cmd.args(["-f", "f32le", "-ar", &input.rate.to_string(), "-ac", "2", "-ss"])

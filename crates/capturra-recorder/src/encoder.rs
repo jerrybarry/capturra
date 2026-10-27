@@ -200,6 +200,23 @@ pub struct Encoder {
     _serial: std::sync::MutexGuard<'static, ()>,
 }
 
+pub(crate) fn ffmpeg_bin() -> &'static str {
+    static BIN: std::sync::OnceLock<&'static str> = std::sync::OnceLock::new();
+    BIN.get_or_init(|| {
+        if Command::new("ffmpeg").arg("-version").output().is_ok() {
+            "ffmpeg"
+        } else if std::path::Path::new("/opt/homebrew/bin/ffmpeg").exists() {
+            "/opt/homebrew/bin/ffmpeg"
+        } else if std::path::Path::new("/usr/local/bin/ffmpeg").exists() {
+            "/usr/local/bin/ffmpeg"
+        } else if std::path::Path::new("/opt/local/bin/ffmpeg").exists() {
+            "/opt/local/bin/ffmpeg"
+        } else {
+            "ffmpeg"
+        }
+    })
+}
+
 impl Encoder {
     /// Starts ffmpeg and returns once its encoder has been opened by warm-up frames, so the
     /// start-up stall happens here, before the recording clock starts.
@@ -208,7 +225,7 @@ impl Encoder {
         // Frames before time zero get negative timestamps; passthrough keeps them (the default
         // constant-rate mode would drop them) and the MP4 muxer hides them with an edit list.
         let vf = format!("setpts=PTS-{WARMUP_FRAMES}/({fps}*TB),scale=trunc(iw/2)*2:trunc(ih/2)*2,format=yuv420p");
-        let child = Command::new("ffmpeg")
+        let child = Command::new(ffmpeg_bin())
             .args(["-y", "-v", "error"])
             .args(["-f", "rawvideo", "-pix_fmt", "bgra", "-s", &format!("{width}x{height}")])
             .args(["-framerate", &fps.to_string(), "-i", "-"])
