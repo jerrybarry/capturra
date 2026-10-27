@@ -278,6 +278,7 @@ fn main() {
             settings::save_settings,
             settings::choose_recordings_dir,
             settings::open_recordings_folder,
+            settings::open_url,
             export_project::export_project,
             backgrounds::add_custom_background,
             backgrounds::list_custom_backgrounds,

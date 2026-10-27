@@ -310,6 +310,10 @@ body.tauri .sidebar { padding-top: 56px; }
 .set-note a { color: var(--accent); }
 .shortcut { font: var(--fw-semibold) 14px var(--font); letter-spacing: .06em; padding: 4px 10px; }
 .settings-page .notice { margin: 0; }
+.about-links { gap: var(--s-3); padding: var(--s-4) 0; border-top: 1px solid var(--line-2); }
+.about-link { display: inline-flex; align-items: center; gap: var(--s-2); height: var(--h-sm); padding: 0 var(--s-3); border-radius: var(--r); background: var(--surface-3); color: var(--text-2); text-decoration: none; font-size: var(--fs-sm); font-weight: var(--fw-medium); transition: background var(--t-fast), color var(--t-fast); }
+.about-link:hover { background: var(--surface-4); color: var(--text); }
+.about-link .ic { width: 16px; height: 16px; }
 
 /* ---------- Sheets, menus, toasts ---------- */
 .scrim { background: rgba(4, 4, 8, .62); backdrop-filter: blur(6px); }

@@ -51,7 +51,8 @@
   "bundle": {
     "active": true,
     "targets": [
-      "app"
+      "app",
+      "dmg"
     ],
     "category": "public.app-category.video",
     "icon": [

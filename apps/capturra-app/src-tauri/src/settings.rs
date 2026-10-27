@@ -184,6 +184,23 @@ pub fn open_recordings_folder() -> Result<(), String> {
     }
 }
 
+/// Open a web URL in the user's default browser.
+#[tauri::command]
+pub fn open_url(url: String) -> Result<(), String> {
+    if !url.starts_with("https://") && !url.starts_with("http://") {
+        return Err("invalid url".to_string());
+    }
+    let status = std::process::Command::new("open")
+        .arg(&url)
+        .status()
+        .map_err(|e| format!("could not open url: {e}"))?;
+    if status.success() {
+        Ok(())
+    } else {
+        Err(format!("could not open url: {url}"))
+    }
+}
+
 /// Validate, switch the shortcut, then save. If saving fails the old shortcut is put back.
 #[tauri::command]
 pub fn save_settings(app: tauri::AppHandle, settings: Settings) -> Result<Settings, String> {

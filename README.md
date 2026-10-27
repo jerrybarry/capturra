@@ -55,16 +55,20 @@ Nothing is baked in, so you can restyle the cursor, move a zoom or change the ba
   <img src="docs/screenshots/audio.png" alt="The Audio tab: enhance voice, volume, fades" width="440">
 </p>
 
+## Download
+
+You can download pre-built release DMGs from the [GitHub Releases](https://github.com/jerrybarry/capturra/releases) page.
+
+Mount the `.dmg`, drag `Capturra.app` into your Applications folder, and launch it. Grant Screen Recording, Accessibility, and Input Monitoring permissions when prompted (macOS requires these for capture and cursor tracking).
+
 ## Status
 
-Capturra is **early**. It works end to end on the author's machine, but it has had very little testing elsewhere.
+Capturra is **early**. It works end to end on macOS 13+.
 
-- Built and tested on **macOS 15 on an Intel MacBook Pro**. It has not been run on Apple Silicon or with several displays at once.
-- It is **not signed or notarized yet**, so there is no download. You build it from source (see below). Signed releases are the next milestone.
+- Pre-built DMGs are published via GitHub Releases for macOS (both Apple Silicon and Intel).
 - Some features are verified only by unit tests and short runs, not by hours of real use: the microphone, the Accessibility-based
   typing zoom and hover detection, system audio, and leaving Capturra's own windows out of display recordings. If something
   misbehaves, please open an issue.
-- Share links and a GPU export path are not built.
 
 ## Build it
 
@@ -146,11 +150,18 @@ before opening a pull request.
 ## Roadmap
 
 - [x] Recording, auto-zoom, cursor, Studio editor, audio, export
-- [ ] Signed and notarized builds (Developer ID, hardened runtime, entitlements)
+- [x] Pre-built macOS DMG & App release packaging
+- [x] GitHub Actions automated release pipeline for Apple Silicon and Intel
+- [ ] Signed and notarized builds (Developer ID, hardened runtime)
 - [ ] Live outline of the recorded region while recording
-- [ ] Apple Silicon and multi-display verification
-- [ ] Share links (upload during recording, viewer page)
+- [ ] Multi-display verification
 - [ ] GPU export path
+
+## Author
+
+Created and maintained by **Jerry Barry**:
+- GitHub: [@jerrybarry](https://github.com/jerrybarry)
+- X (Twitter): [@iamjerrybarry](https://x.com/iamjerrybarry)
 
 ## Acknowledgements
 
