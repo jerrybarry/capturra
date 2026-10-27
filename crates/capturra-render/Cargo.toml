@@ -1,0 +1,11 @@
+[package]
+name = "capturra-render"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Capturra exporter: zoom, cursor, framed canvas, audio and encoding on top of ffmpeg."
+
+[dependencies]
+capturra-core.workspace = true
+anyhow.workspace = true
+png = "0.17"

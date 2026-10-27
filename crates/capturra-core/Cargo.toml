@@ -1,0 +1,10 @@
+[package]
+name = "capturra-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Capturra core: the input event model, cursor smoothing and the auto-zoom engine. No OS APIs."
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true

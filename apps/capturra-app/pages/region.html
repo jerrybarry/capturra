@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select a region</title>
+  </head>
+  <body>
+    <div id="stage">
+      <img id="shot" alt="" draggable="false" />
+      <div id="dim"></div>
+      <div id="sel" hidden><span id="size"></span></div>
+      <div id="bar" hidden>
+        <button id="use" type="button">Use this region <kbd>↵</kbd></button>
+        <button id="cancel" type="button">Cancel <kbd>esc</kbd></button>
+      </div>
+      <p id="hint">Drag to select what to record</p>
+    </div>
+    <script type="module" src="/src/region/main.ts"></script>
+  </body>
+</html>

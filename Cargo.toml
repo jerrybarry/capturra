@@ -1,0 +1,35 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/capturra-core",
+    "crates/capturra-render",
+    "crates/capturra-recorder",
+    "apps/capturra-cli",
+    "apps/capturra-app/src-tauri",
+]
+# vendored third-party crates with small patches: see vendor/scap/CAPTURRA-PATCH.md and vendor/rdev/CAPTURRA-PATCH.md
+exclude = ["vendor/scap", "vendor/rdev"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+anyhow = "1"
+capturra-core = { path = "crates/capturra-core" }
+capturra-render = { path = "crates/capturra-render" }
+capturra-recorder = { path = "crates/capturra-recorder" }
+
+[patch.crates-io]
+scap = { path = "vendor/scap" }
+rdev = { path = "vendor/rdev" }
+
+# The exporter does heavy per-pixel work; unoptimised (the default for `tauri dev`) it would take many
+# times longer, so optimise it even in debug builds.
+[profile.dev.package.capturra-render]
+opt-level = 3
+[profile.dev.package.capturra-core]
+opt-level = 3

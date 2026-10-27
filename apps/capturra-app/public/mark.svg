@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 20 920 810" fill="none">
+  <defs>
+    <linearGradient id="capturra-c" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d212b"/>
+      <stop offset="1" stop-color="#13151a"/>
+    </linearGradient>
+    <linearGradient id="capturra-g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5a86ff"/>
+      <stop offset="1" stop-color="#5a4cf7"/>
+    </linearGradient>
+  </defs>
+  <!-- C -->
+  <path fill="url(#capturra-c)" d="M 340 38 H 570 C 650 38 705 90 722 165 Q 727 188 695 188 H 400 C 310 188 252 240 252 320 V 520 C 252 600 310 660 390 660 H 540 C 610 660 650 620 685 575 Q 692 563 710 563 H 850 Q 876 563 874 595 C 860 720 770 805 650 805 H 470 C 380 805 300 760 230 690 C 130 590 78 500 78 380 V 300 C 78 150 190 38 340 38 Z"/>
+  <!-- play -->
+  <polygon points="425,293 425,553 650,423" fill="url(#capturra-g)" stroke="url(#capturra-g)" stroke-width="55" stroke-linejoin="round"/>
+  <!-- frame corners -->
+  <path d="M 764 61 H 835 Q 893 61 893 120 V 200" stroke="url(#capturra-g)" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 61 645 V 720 Q 61 790 120 790 H 190" stroke="url(#capturra-g)" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

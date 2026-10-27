@@ -1,0 +1,18 @@
+[package]
+name = "capturra-app"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Capturra menu-bar recorder"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon", "image-png", "protocol-asset"] }
+serde.workspace = true
+serde_json.workspace = true
+capturra-recorder.workspace = true
+capturra-core.workspace = true
+capturra-render.workspace = true
+tauri-plugin-global-shortcut = "2"

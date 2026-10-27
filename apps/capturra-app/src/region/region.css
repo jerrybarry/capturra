@@ -1,0 +1,17 @@
+/* The region picker window: a dimmed screenshot with a rectangle to drag. It is always dark. */
+html, body { background: #000; cursor: crosshair; }
+#stage { position: fixed; inset: 0; }
+#shot { position: absolute; max-width: none; pointer-events: none; }
+#dim { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); }
+#sel { position: absolute; border: 2px solid #fff; border-radius: 3px; box-sizing: border-box; box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5); pointer-events: none; }
+#size { position: absolute; left: 0; top: -32px; padding: 4px 10px; border-radius: var(--r-pill); background: rgba(20, 20, 24, 0.94); color: #fff; font-weight: var(--fw-semibold); font-variant-numeric: tabular-nums; white-space: nowrap; }
+#size.below { top: 8px; left: 8px; }
+#bar { position: absolute; left: 50%; bottom: 40px; transform: translateX(-50%); display: flex; gap: var(--s-2); padding: var(--s-2); border-radius: var(--r-xl); background: rgba(20, 20, 24, 0.94); box-shadow: var(--shadow-3); cursor: default; }
+#bar[hidden], #sel[hidden], #dim[hidden] { display: none; }
+#bar button { height: var(--h); padding: 0 var(--s-4); border: 0; border-radius: var(--r); background: var(--surface-4); color: #fff; font-weight: var(--fw-semibold); cursor: pointer; }
+#bar button:hover { background: #3a3a44; }
+#bar #use { background: var(--rec); }
+#bar #use:hover { background: var(--rec-hover); }
+#bar kbd { margin-left: var(--s-2); opacity: .7; background: transparent; border: 0; padding: 0; font-size: var(--fs-xs); }
+#hint { position: absolute; left: 50%; top: 40px; transform: translateX(-50%); margin: 0; padding: var(--s-2) var(--s-4); border-radius: var(--r-pill); background: rgba(20, 20, 24, 0.94); color: #fff; font-weight: var(--fw-medium); pointer-events: none; }
+#hint.problem { background: #6d1f22; }

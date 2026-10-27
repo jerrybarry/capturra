@@ -1,0 +1,60 @@
+/* The menu-bar popover, built from the shared design system (design/tokens.css, design/components.css).
+   It is a compact 360px window, so spacing is a notch tighter than the Studio's. */
+
+#app { display: flex; flex-direction: column; height: 100%; padding: var(--s-4); gap: var(--s-3); overflow: hidden; }
+/* two regions: the body scrolls when there is too much to show, the footer (status and Record/Stop) keeps its own
+   space below it, so nothing can ever slide underneath the button */
+#app > .body { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: var(--s-3); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
+#app > .body::-webkit-scrollbar { display: none; }
+#app > .body > * { flex: none; }
+h1 { display: flex; justify-content: space-between; align-items: center; margin: 0; font-size: var(--fs-xl); font-weight: var(--fw-bold); letter-spacing: var(--track-tight); }
+.brand-title { display: flex; align-items: center; gap: var(--s-2); }
+.brand-title .mark { width: 24px; height: 21px; flex: none; color: var(--text); filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .2)); }
+h1 small { font-weight: var(--fw-regular); color: var(--text-3); font-size: var(--fs-sm); letter-spacing: 0; }
+
+.card { background: var(--surface-2); border: 1px solid var(--line-2); border-radius: var(--r-lg); padding: var(--s-3) var(--s-4); }
+.card.err { border-color: color-mix(in srgb, var(--rec) 45%, transparent); background: color-mix(in srgb, var(--rec) 10%, var(--surface-2)); }
+.perm { display: flex; align-items: center; gap: var(--s-2); padding: var(--s-1) 0; }
+.perm .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--warn); flex: none; }
+.perm.ok .dot { background: var(--ok); }
+.perm span { flex: 1; }
+.note { color: var(--text-3); font-size: var(--fs-sm); margin: var(--s-2) 0 0; }
+.note a { color: var(--accent); }
+.err { color: var(--rec); }
+
+.seg { grid-template-columns: repeat(3, 1fr); }
+.list { flex: 1; overflow-y: auto; min-height: 0; }
+.row { display: flex; gap: var(--s-2); align-items: flex-start; padding: var(--s-2) var(--s-1); border-radius: var(--r-sm); cursor: default; }
+.row:hover { background: var(--surface-3); }
+.row input { margin-top: 3px; accent-color: var(--accent); }
+.row .t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: var(--fw-medium); }
+.row .s { color: var(--text-3); font-size: var(--fs-sm); }
+
+.fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s-2); }
+.fields label.f, .fields input { min-width: 0; }
+.fields input { width: 100%; }
+label.f { display: flex; flex-direction: column; gap: var(--s-1); color: var(--text-2); font-size: var(--fs-sm); font-weight: var(--fw-medium); }
+input[type=number], select { height: var(--h); padding: 0 var(--s-3); border-radius: var(--r); border: 1px solid var(--control-line); background: var(--control); color: var(--text); }
+input[type=number]:focus, select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+/* secondary action */
+button.sec { height: var(--h); padding: 0 var(--s-4); border-radius: var(--r); border: 1px solid var(--control-line); background: var(--control); color: var(--text); font-weight: var(--fw-medium); font-size: 14px; transition: background var(--t-fast); }
+button.sec:hover { background: var(--control-hover); }
+/* start recording: the one red button */
+button.rec { width: 100%; height: var(--h-lg); border: 0; border-radius: var(--r); background: var(--rec); color: #fff; font-weight: var(--fw-medium); font-size: var(--fs-lg); transition: background var(--t-fast), transform var(--t-fast) var(--ease); }
+button.rec:hover { background: var(--rec-hover); }
+button.rec:active { transform: scale(.985); }
+button.rec:disabled { opacity: .4; pointer-events: none; }
+button.rec.stop { background: var(--inverse); color: var(--on-inverse); }
+button.rec.stop:hover { background: var(--inverse-hover); }
+
+.center { text-align: center; padding: var(--s-5) var(--s-2); }
+.big { font-size: 56px; font-weight: var(--fw-bold); line-height: 1; margin-bottom: var(--s-2); letter-spacing: var(--track-tight); }
+.path { word-break: break-all; font-size: var(--fs-sm); color: var(--text-3); user-select: text; -webkit-user-select: text; }
+
+/* a setting on one line: label and value on the left, its buttons on the right */
+.line { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); }
+.line .grow { min-width: 0; flex: 1; }
+.line .f { color: var(--text); font-weight: var(--fw-semibold); }
+.line .path { margin-top: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.btns { display: flex; gap: var(--s-2); flex: none; }

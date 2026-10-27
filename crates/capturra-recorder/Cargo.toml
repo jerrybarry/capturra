@@ -1,0 +1,29 @@
+[package]
+name = "capturra-recorder"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Capturra recorder: ScreenCaptureKit capture, input, cursor, audio and the constant-rate encoder (macOS)."
+
+[dependencies]
+capturra-core.workspace = true
+anyhow.workspace = true
+serde.workspace = true
+
+[target.'cfg(target_os = "macos")'.dependencies]
+# ScreenCaptureKit wrapper. Only src/capture.rs touches this crate, so if its
+# API differs from what is written there, that is the one file to adjust.
+scap = "0.0.8"
+# Global mouse/keyboard listener (needs Accessibility / Input Monitoring).
+rdev = "0.5"
+core-graphics = "0.23"
+# the same version core-graphics uses; needed to build the option dictionary for the display-mode list
+core-foundation = "0.9"
+objc2 = "0.6.5"
+block2 = "0.6.2"
+objc2-app-kit = "0.3.2"
+objc2-foundation = "0.3.2"
+cpal = "0.15.3"
+
+[dev-dependencies]
+serde_json.workspace = true

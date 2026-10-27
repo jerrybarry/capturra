@@ -1,0 +1,30 @@
+# build output
+target/
+node_modules/
+dist/
+
+# macOS and editors
+.DS_Store
+.idea/
+.vscode/
+
+# local secrets and logs
+.env
+.env.*
+*.log
+
+# recordings and media made while testing (record --out <dir>, soak runs, previews).
+# Anchored to the repository root so they never hide source folders.
+/recording*/
+/rec*/
+/quiet*/
+/warm*/
+/cursor-probe/
+/synthetic*/
+/region*/
+/v-*/
+/win-*/
+/soak/
+/demo/
+/preview*.mp4
+/*.mp4
