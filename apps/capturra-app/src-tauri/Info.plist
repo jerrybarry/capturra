@@ -2,9 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <!-- A menu-bar app: no Dock icon and no app switcher entry, even before the first window. -->
+  <!-- Show Dock icon and allow app switcher entry -->
   <key>LSUIElement</key>
-  <true/>
+  <false/>
   <!-- shown by macOS when Capturra first asks to record the microphone -->
   <key>NSMicrophoneUsageDescription</key>
   <string>Capturra records your microphone when you turn it on, to add your voice to a screen recording.</string>

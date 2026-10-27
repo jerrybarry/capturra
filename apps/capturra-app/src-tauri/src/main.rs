@@ -285,9 +285,9 @@ fn main() {
             backgrounds::delete_custom_background,
         ])
         .setup(|app| {
-            // A menu-bar app: no Dock icon, no app menu.
+            // Regular app: shows Dock icon and app switcher entry.
             #[cfg(target_os = "macos")]
-            app.set_activation_policy(tauri::ActivationPolicy::Accessory);
+            app.set_activation_policy(tauri::ActivationPolicy::Regular);
 
             // The system hand pointer, for showing the hand over clickable things in finished videos. This
             // runs on the main thread, the only place macOS hands out its standard cursors.
@@ -351,6 +351,12 @@ fn main() {
             }
             _ => {}
         })
-        .run(tauri::generate_context!())
-        .expect("error while running Capturra");
+        .build(tauri::generate_context!())
+        .expect("error while building Capturra")
+        .run(|app, event| {
+            #[cfg(target_os = "macos")]
+            if let tauri::RunEvent::Reopen { .. } = event {
+                open_studio(app);
+            }
+        });
 }
